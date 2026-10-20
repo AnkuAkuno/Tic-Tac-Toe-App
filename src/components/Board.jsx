@@ -1,53 +1,68 @@
 import Square from "./Square";
 import GameStatus from "./GameStatus";
 import GameControls from "./GameControls";
-import GameMode from "./GameMode";
 import { useState, useEffect } from 'react'
 import { calculateWinner, getAIMove } from "../utils/gameLogic";
+import ScoreBoard from "./ScoreBoard";
 
-function Board({isDark, setIsDark}) {
+function Board({gameMode, difficulty, playerSymbol, onHome}) {
     const [board, setBoard] = useState(Array(9).fill(null));
     const [isNext, setIsNext] = useState(true);
-    const [isAI, setIsAI] = useState(false);
-
+    const aiSymbol = playerSymbol === 'X' ? 'O' : 'X';
     const winner = calculateWinner(board);
-    
-    function makeAIMove(index) {
-        const nextBoard = board.slice();
-        nextBoard[index] = 'O';
-        setBoard(nextBoard);
-        setIsNext(true);
-    }
+    const isAITurn = gameMode === 'ai' && !winner && (
+        (playerSymbol === 'X' && !isNext) || (playerSymbol === 'O' && isNext) 
+    );
+    const [scores, setScores] = useState({X: 0, O: 0, draws: 0});
     
     //otomatisasi giliran AI
-    useEffect(() => {
-        //jalankan bot kalau mode AI aktif
-        if (isAI && !isNext && !winner && board.includes(null)) {
-            const timer = setTimeout(() => {
-                const aiIndex = getAIMove(board);
-                if(aiIndex !== null) {
-                    makeAIMove(aiIndex);
+    useEffect (() => {
+        if (isAITurn && board.includes(null)) {
+            const timer = setTimeout (() => {
+                const aiIndex = getAIMove(board, difficulty, aiSymbol);
+
+                if (aiIndex !== null) {
+                    const nextBoard = board.slice();
+                    nextBoard[aiIndex] = aiSymbol;
+                    setBoard(nextBoard);
+
+
+                    const gameWinner = calculateWinner(nextBoard);
+                    if (gameWinner) {
+                        setScores ((prev) => ({...prev, [gameWinner]: prev[gameWinner] + 1}));
+                    } else if (!nextBoard.includes (null)) {
+                        setScores ((prev) => ({...prev, draws: prev.draws + 1}));
+                    } else {   
+                        setIsNext(!isNext);
+                    }
                 }
-            }, 800);
+            }, 600);
+
             return () => clearTimeout(timer);
         }
-    }, [board, isAI, isNext, winner]);
+    }, [board, isAITurn, difficulty, aiSymbol, isNext]);
 
 
     function handleClick(index) {
-        if (board[index] || winner || (isAI && !isNext)) return;
+        if (board[index] || winner ||isAITurn) return;
 
         const nextBoard = board.slice();
-
-        if(isNext) {
-            nextBoard[index] = 'X';
+        if (gameMode === 'ai') {
+            nextBoard[index] = playerSymbol
         } else {
-            nextBoard[index] = 'O'
+            nextBoard[index] = isNext ? 'X' : 'O';
         }
 
         setBoard(nextBoard);
-        setIsNext(!isNext);
-        
+
+        const gameWinner = calculateWinner(nextBoard);
+        if (gameWinner) {
+            setScores ((prev) => ({...prev, [gameWinner]: prev[gameWinner] + 1}));
+        } else if (!nextBoard.includes(null)) {
+            setScores((prev) => ({...prev, draws: prev.draws + 1}));
+        } else {
+            setIsNext(!isNext);
+        }        
     }
 
 
@@ -57,21 +72,16 @@ function Board({isDark, setIsDark}) {
         setIsNext(true);
 
     };
-
-    function  toggleMode() {
-        setIsAI(!isAI);
-        handleReset();
-    }
     
     let status;
 
     if(winner) {
-        status =`Pemenangnya adalah Player ${winner}!`
+        status =`Pemenangnya adalah Player ${winner}!`;
     } else if (!board.includes(null)) {
         status = `Permainan seri!`;
     } else {
-        
-        status = `Giliran ${isAI && !isNext ? 'AI (O)' : `Player ${isNext ? 'X' : 'O'}` }`
+        const currentTurn = isNext ? 'X' : 'O';
+        status = `Giliran Player ${currentTurn}`
     }
 
 
@@ -79,8 +89,7 @@ function Board({isDark, setIsDark}) {
 
         <div>
 
-
-            <GameMode toggleMode={toggleMode} isAI={isAI} />
+            <ScoreBoard scores={scores} playerSymbol={playerSymbol} gameMode={gameMode} />
 
             <div className="board">
 
@@ -99,7 +108,7 @@ function Board({isDark, setIsDark}) {
 
             <GameStatus status={status} />
 
-            <GameControls onReset={handleReset} isDark={isDark} setIsDark={setIsDark} toggleMode={toggleMode} isAI={isAI} />
+            <GameControls onReset={handleReset} onHome={onHome} />
         </div>
     )
 

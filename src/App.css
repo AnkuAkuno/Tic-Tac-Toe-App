@@ -179,6 +179,250 @@ body {
     color: var(--btn-color-hover);
 }
 
+
+/* Container Utama untuk Screen Navigasi */
+.main-menu-container,
+.mode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Judul Utama dengan Efek Neon Glow */
+.neon-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 6px #fff,
+        0 0 5px #00f3ff,
+        0 0 11px #00f3ff,
+        0 0 32px #00f3ff,
+        0 0 82px #00f3ff;
+    margin-bottom: 1.5rem;
+}
+
+
+.screen-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00f3ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+/* Container Pembungkus Tombol */
+.menu-buttons,
+.mode-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 250px;
+}
+
+/* Styling Tombol Neon Utama */
+.btn-menu,
+.btn-mode {
+  padding: 0.9rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00f3ff;
+  background-color: transparent;
+  border: 2px solid #00f3ff;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2), inset 0 0 10px rgba(0, 243, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-menu:hover,
+.btn-mode:hover {
+  background-color: #00f3ff;
+  color: #0d1117;
+  box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+  transform: translateY(-3px);
+}
+
+/* Tombol Kembali dengan Sentuhan Merah Neon */
+.btn-back {
+  margin-top: 1rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ff2a6d;
+  background: transparent;
+  border: 1.5px solid #ff2a6d;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #ff2a6d;
+  color: #fff;
+  box-shadow: 0 0 15px #ff2a6d;
+  transform: translateY(-2px);
+}
+
+/* Styling Khusus Tombol Difficulty */
+.btn-easy {
+  color: #00ff66;
+  border-color: #00ff66;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.2), inset 0 0 10px rgba(0, 255, 102, 0.1);
+}
+
+.btn-easy:hover {
+  background-color: #00ff66;
+  color: #0d1117;
+  box-shadow: 0 0 20px #00ff66, 0 0 40px #00ff66;
+}
+
+.btn-medium {
+  color: #ffcc00;
+  border-color: #ffcc00;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.2), inset 0 0 10px rgba(255, 204, 0, 0.1);
+}
+
+.btn-medium:hover {
+  background-color: #ffcc00;
+  color: #0d1117;
+  box-shadow: 0 0 20px #ffcc00, 0 0 40px #ffcc00;
+}
+
+.btn-hard {
+  color: #ff0055;
+  border-color: #ff0055;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.2), inset 0 0 10px rgba(255, 0, 85, 0.1);
+}
+
+.btn-hard:hover {
+  background-color: #ff0055;
+  color: #fff;
+  box-shadow: 0 0 20px #ff0055, 0 0 40px #ff0055;
+}
+
+
+
+
+/* Subtitle Keterangan Simbol */
+.symbol-subtitle {
+  color: #a0aabf;
+  font-size: 0.9rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+/* Layout Tombol Simbol Menyamping */
+.symbol-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Tombol Raksasa X dan O */
+.btn-symbol {
+  width: 110px;
+  height: 110px;
+  font-size: 3.5rem;
+  font-weight: 900;
+  border-radius: 20px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-x {
+  color: #ff0055;
+  border: 3px solid #ff0055;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.3), inset 0 0 10px rgba(255, 0, 85, 0.2);
+}
+
+.btn-x:hover {
+  background-color: #ff0055;
+  color: #fff;
+  box-shadow: 0 0 30px #ff0055, 0 0 50px #ff0055;
+  transform: scale(1.1);
+}
+
+.btn-o {
+  color: #00f3ff;
+  border: 3px solid #00f3ff;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), inset 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.btn-o:hover {
+  background-color: #00f3ff;
+  color: #0d1117;
+  box-shadow: 0 0 30px #00f3ff, 0 0 50px #00f3ff;
+  transform: scale(1.1);
+}
+
+/* Layout ScoreBoard */
+.score-board {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+  margin-bottom: 1.5rem;
+  padding: 0.8rem;
+  background: rgba(13, 17, 23, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+/* Warna Khas Tiap Tim */
+.x-score {
+  color: #ff0055;
+  text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+}
+
+.o-score {
+  color: #5ff496;
+  text-shadow: 0 0 8px rgba(51, 229, 116, 0.8);
+}
+
+.draw-score {
+  color: #ffcc00;
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.6);
+}
+
+
 @media (max-width: 480px) {
 
 .board {
