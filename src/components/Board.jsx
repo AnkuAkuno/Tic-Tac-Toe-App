@@ -6,14 +6,17 @@ import { calculateWinner, getAIMove } from "../utils/gameLogic";
 import ScoreBoard from "./ScoreBoard";
 
 function Board({gameMode, difficulty, playerSymbol, onHome}) {
+
+
     const [board, setBoard] = useState(Array(9).fill(null));
     const [isNext, setIsNext] = useState(true);
     const aiSymbol = playerSymbol === 'X' ? 'O' : 'X';
     const winner = calculateWinner(board);
-    const isAITurn = gameMode === 'ai' && !winner && (
-        (playerSymbol === 'X' && !isNext) || (playerSymbol === 'O' && isNext) 
-    );
+    const currentTurnSymbol = isNext ? 'X' : 'O';
+    const isAITurn = gameMode === 'ai' && !winner && ( currentTurnSymbol === aiSymbol);
     const [scores, setScores] = useState({X: 0, O: 0, draws: 0});
+    const [startingPlayer, setStartingPlayer] = useState('X');
+    const isGameOver = winner || !board.includes(null);
     
     //otomatisasi giliran AI
     useEffect (() => {
@@ -36,7 +39,7 @@ function Board({gameMode, difficulty, playerSymbol, onHome}) {
                         setIsNext(!isNext);
                     }
                 }
-            }, 600);
+            }, 1000);
 
             return () => clearTimeout(timer);
         }
@@ -68,8 +71,11 @@ function Board({gameMode, difficulty, playerSymbol, onHome}) {
 
     function handleReset() {
 
+        const nextStarter = startingPlayer === 'X' ? 'O' : 'X';
+
         setBoard(Array(9).fill(null));
-        setIsNext(true);
+        setStartingPlayer(nextStarter);
+        setIsNext(nextStarter === 'X');
 
     };
     
@@ -86,6 +92,7 @@ function Board({gameMode, difficulty, playerSymbol, onHome}) {
 
 
     return (
+
 
         <div>
 
@@ -107,8 +114,8 @@ function Board({gameMode, difficulty, playerSymbol, onHome}) {
             </div>
 
             <GameStatus status={status} />
-
-            <GameControls onReset={handleReset} onHome={onHome} />
+            
+            <GameControls onReset={handleReset} onHome={onHome} winner={winner} isGameOver={isGameOver} />
         </div>
     )
 

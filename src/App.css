@@ -423,33 +423,136 @@ body {
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .App-container {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 1.25rem 1rem;
+  }
 
-.board {
-    grid-template-columns: repeat(3, 85px);
+  .main-menu-container,
+  .mode-container {
+    width: 100%;
+    min-height: 70vh;
+    gap: 1.25rem;
+    padding: 0.75rem 0;
+  }
+
+  .neon-title {
+    max-width: 100%;
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    letter-spacing: clamp(1px, 1vw, 4px);
+    text-align: center;
+  }
+
+  .neon-title h1 {
+    font-size: 2.7rem;
+  }
+
+  .neon-copyright {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .screen-title {
+    max-width: 100%;
+    font-size: clamp(1.35rem, 6vw, 2rem);
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .menu-buttons,
+  .mode-buttons {
+    max-width: 320px;
+  }
+
+  .btn-menu,
+  .btn-mode,
+  .btn-back {
+    min-height: 44px;
+  }
+
+  .symbol-buttons {
+    gap: 1rem;
+  }
+
+  .btn-symbol {
+    width: 96px;
+    height: 96px;
+    font-size: 3rem;
+  }
+
+  .score-board {
+    width: min(100%, 340px);
+    margin-bottom: 1rem;
+    padding: 0.7rem 0.5rem;
+  }
+
+  .score-label {
+    font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+    letter-spacing: 0.5px;
+  }
+
+  .board {
+    width: min(320px, calc(100vw - 2rem));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(6px, 2vw, 10px);
+    margin: 0 auto;
+  }
+
+  .square {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-width: 4px;
+    border-radius: 12px;
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .game-header {
+    margin-top: 1rem;
+  }
+
+  .game-header h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    text-align: center;
+  }
+
+  .game-mode p {
+    margin: 0.75rem 0 1rem;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    text-align: center;
+  }
+
+  .dark .status-text,
+  .light .status-text {
+    padding: 0.5rem;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    text-align: center;
+  }
+
+  .btn-group {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .btn-group .btn-back {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1rem;
+  }
 }
 
-.square {
-    width: 85px;
-    height: 85px;
-}
- 
-.game-header h1 {
-    margin-top: 30px;
-    font-size: 55px;
-}
+@media (max-width: 360px) {
+  .App-container {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
 
-.reset-btn, .theme-btn, .mode-btn {
+  .neon-title {
+    font-size: clamp(1.5rem, 8vw, 1.75rem);
+  }
 
-    margin-top: 10px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    background: var(--btn-bg);
-    color: var(--btn-text);
-    border: none;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
+  .screen-title {
+    font-size: clamp(1.2rem, 6vw, 1.35rem);
+  }
 }
