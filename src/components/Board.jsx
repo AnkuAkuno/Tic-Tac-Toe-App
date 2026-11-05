@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { calculateWinner, getAIMove } from "../utils/gameLogic";
 import ScoreBoard from "./ScoreBoard";
 
-function Board({gameMode, difficulty, playerSymbol, onHome}) {
+function Board({gameMode, difficulty, playerSymbol, onHome, playSFX}) {
 
 
     const [board, setBoard] = useState(Array(9).fill(null));
@@ -65,7 +65,9 @@ function Board({gameMode, difficulty, playerSymbol, onHome}) {
             setScores((prev) => ({...prev, draws: prev.draws + 1}));
         } else {
             setIsNext(!isNext);
-        }        
+        }
+        
+        playSFX('click');
     }
 
 
@@ -83,6 +85,7 @@ function Board({gameMode, difficulty, playerSymbol, onHome}) {
 
     if(winner) {
         status =`Pemenangnya adalah Player ${winner}!`;
+        playSFX('win');
     } else if (!board.includes(null)) {
         status = `Permainan seri!`;
     } else {

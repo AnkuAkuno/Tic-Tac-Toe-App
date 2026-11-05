@@ -1,4 +1,5 @@
-function MainMenu ({onQuickPlay}) {
+function MainMenu ({onQuickPlay, onSettings}) {
+
 
     return (
         <div className="main-menu-container">
@@ -10,7 +11,7 @@ function MainMenu ({onQuickPlay}) {
                 <button className="btn-menu" onClick={onQuickPlay}>
                     Quick Play
                 </button>
-                <button className="btn-menu">
+                <button className="btn-menu" onClick={onSettings}>
                     Settings
                 </button>
             </div>

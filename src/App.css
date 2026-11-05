@@ -8,6 +8,61 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.3s, color 0.3s;
 }
+
+
+
+/* --- CONFIGURASI WARNA GLOBAL & THEME SWITCHER --- */
+
+/* 1. Tema Default: Cyber Cyan (Biru Neon) */
+:root, [data-theme="cyan"] {
+  --primary-neon: #00f3ff;
+  --primary-glow: rgba(0, 243, 255, 0.6);
+  --font-color: black;
+  --symbol-x:  #ff0055;
+  --symbol-o: #00ff66;
+  --btn-bg: transparent;
+}
+
+/* 2. Tema: Matrix Green (Hijau Hacker) */
+[data-theme="green"] {
+  --primary-neon: #00ff66;
+  --primary-glow: rgba(0, 255, 102, 0.6);
+  --font-color: black;
+  --symbol-x: rgb(226, 39, 226);
+  --symbol-o: rgb(3, 238, 255);
+  --btn-bg: transparent;
+}
+
+/* 3. Tema: Synth Purple (Ungu Retro 80an) */
+[data-theme="purple"] {
+  --primary-neon: #bf00ff;
+  --primary-glow: rgba(191, 0, 255, 0.6);
+  --font-color: white;
+  --symbol-x: rgb(29, 104, 255);
+  --symbol-o: rgb(141, 252, 13);
+  --btn-bg: transparent;
+}
+
+/* Terapkan variabel warna ke seluruh komponen neon utama */
+body {
+  background-color: #0b0f19;
+  color: #ffffff;
+}
+
+/* Contoh penerapan ke border, teks glow, dan tombol neon */
+.btn-neon, .settings-card, .neon-toggle-btn, .btn-menu, .btn-mode{
+  border-color: var(--primary-neon) !important;
+  color: var(--primary-neon) !important;
+  box-shadow: 0 0 12px var(--primary-glow) !important;
+
+}
+
+
+
+
+
+
+
 .App-container.dark {
 
     --bg-color: #0f172a;
@@ -57,7 +112,7 @@ body {
     width: 100px;
     height: 100px;
     background-color: var(--square-bg);
-    border: 5px solid var(--square-border);
+    border: 5px solid var(--primary-neon) !important;
     border-radius: 15px;
     cursor: pointer;
     font-size: 4rem;
@@ -67,13 +122,13 @@ body {
 }
 
 .dark .square-x {
-  color: #f43f5e;
-  text-shadow: 0 0 10px rgba(244, 63, 94, 0.8);
+  color: var(--symbol-x) !important;
+  text-shadow: 0 0 10px var(--symbol-x) !important;
 }
 
 .dark .square-o {
-  color: #22c55e;
-  text-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+  color:var(--symbol-o) !important;
+  text-shadow: 0 0 10px var(--symbol-o) !important;
 }
 
 .light .square-x {
@@ -204,7 +259,7 @@ body {
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 4px;
-    text-shadow: 
+    text-shadow:  
         0 0 6px #fff,
         0 0 5px #00f3ff,
         0 0 11px #00f3ff,
@@ -217,10 +272,10 @@ body {
 .screen-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #00f3ff;
+  color:var(--primary-neon) !important;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  text-shadow: 0 0 10px var(--primary-glow) !important;
   margin-bottom: 1.5rem;
 }
 
@@ -249,10 +304,9 @@ body {
   transition: all 0.3s ease;
 }
 
-.btn-menu:hover,
-.btn-mode:hover {
-  background-color: #00f3ff;
-  color: #0d1117;
+.btn-menu:hover, .btn-mode:hover {
+  background-color: var(--primary-neon) !important;
+  color:var(--font-color) !important;
   box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
   transform: translateY(-3px);
 }
@@ -279,6 +333,28 @@ body {
 }
 
 /* Styling Khusus Tombol Difficulty */
+
+.mode-buttons-diff {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 250px;
+}
+
+.btn-mode-diff {
+   padding: 0.9rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00f3ff;
+  background-color: transparent;
+  border: 2px solid #00f3ff;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2), inset 0 0 10px rgba(0, 243, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
 .btn-easy {
   color: #00ff66;
   border-color: #00ff66;
@@ -348,28 +424,28 @@ body {
 }
 
 .btn-x {
-  color: #ff0055;
-  border: 3px solid #ff0055;
-  box-shadow: 0 0 15px rgba(255, 0, 85, 0.3), inset 0 0 10px rgba(255, 0, 85, 0.2);
+  color: var(--symbol-x) !important;
+  border: 3px solid var(--symbol-x) !important;
+  box-shadow: 0 0 15px var(--symbol-x), inset 0 0 10px var(--symbol-x);
 }
 
 .btn-x:hover {
-  background-color: #ff0055;
-  color: #fff;
-  box-shadow: 0 0 30px #ff0055, 0 0 50px #ff0055;
+  background-color: var(--symbol-x) !important;
+  color: #fff !important;
+  box-shadow: 0 0 30px var(--symbol-x), 0 0 50px var(--symbol-x);
   transform: scale(1.1);
 }
 
 .btn-o {
-  color: #00f3ff;
-  border: 3px solid #00f3ff;
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), inset 0 0 10px rgba(0, 243, 255, 0.2);
+  color:var(--symbol-o) !important;
+  border: 3px solid var(--symbol-o) !important;
+  box-shadow: 0 0 15px var(--symbol-o), inset 0 0 10px var(--symbol-o);
 }
 
 .btn-o:hover {
-  background-color: #00f3ff;
-  color: #0d1117;
-  box-shadow: 0 0 30px #00f3ff, 0 0 50px #00f3ff;
+  background-color: var(--symbol-o) !important;
+  color: #0d1117 !important;
+  box-shadow: 0 0 30px var(--symbol-o), 0 0 50px var(--symbol-o);
   transform: scale(1.1);
 }
 
@@ -408,18 +484,154 @@ body {
 
 /* Warna Khas Tiap Tim */
 .x-score {
-  color: #ff0055;
-  text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+  color: var(--symbol-x) !important;
+  text-shadow: 0 0 8px var(--symbol-x) !important;
 }
 
 .o-score {
-  color: #5ff496;
-  text-shadow: 0 0 8px rgba(51, 229, 116, 0.8);
+  color: var(--symbol-o) !important;
+  text-shadow: 0 0 8px var(--symbol-o) !important;
 }
 
 .draw-score {
   color: #ffcc00;
   text-shadow: 0 0 8px rgba(255, 204, 0, 0.6);
+}
+
+
+
+
+/* --- STYLING MENU SETTINGS & NEON TOGGLE --- */
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.settings-title {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 0 0 20px rgba(0, 243, 255, 0.5);
+  margin-bottom: 5px;
+}
+
+.settings-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 2px solid #00f3ff;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), inset 0 0 15px rgba(0, 243, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  width: 350px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.setting-item.column {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Tombol Toggle Neon */
+.neon-toggle-btn {
+  background: transparent;
+  border: 2px solid #ff0055;
+  color: #ff0055;
+  padding: 8px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(255, 0, 85, 0.6);
+  margin-left: 10px;
+}
+
+.neon-toggle-btn.active {
+  border-color: #00ff66;
+  color: #00ff66;
+  box-shadow: 0 0 12px rgba(0, 255, 102, 0.6);
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.8);
+}
+
+.neon-toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Theme Options Buttons */
+.theme-buttons {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.theme-btn {
+  flex: 1;
+  padding: 8px 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.theme-btn.cyan {
+  border: 2px solid #00f3ff;
+  color: #00f3ff;
+}
+
+.theme-btn.green {
+  border: 2px solid #00ff66;
+  color: #00ff66;
+}
+
+.theme-btn.purple {
+  border: 2px solid #bf00ff;
+  color: #bf00ff;
+}
+
+.theme-btn.selected {
+  background: currentColor;
+  color: #0f172a;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.neon-toggle-btn-back {
+  background: transparent;
+  border: 2px solid #ff0055;
+  color: #ff0055;
+  padding: 8px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(255, 0, 85, 0.6);
+}
+
+.neon-toggle-btn-back:hover {
+  transform: scale(1.05);
+}
+
+
+.btn-menu-back {
+  margin-top: 10px;
+  width: 200px;
 }
 
 
